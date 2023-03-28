@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">h
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src=" https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js"></script>
+   
     <title>Document</title>
     <style>
         * {
@@ -65,11 +66,11 @@
                 </div>
                 <div class="mb-3 mx-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control w-100" id="password">
+                    <input type="file" class="form-control w-100" id="password">
                 </div>
                 <div class="mb-3 mx-3">
-                    <label for="name" class="form-label">Email address</label>
-                    <input type="email" class="form-control w-100" id="Email" aria-describedby="emailHelp">
+                    <label for="name" class="form-label">blog text</label>
+                    <input type="text" class="form-control w-100" id="Email" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.
                     </div>
                 </div>
@@ -78,12 +79,12 @@
             </form> 
             <div class=" w-100">
                 <div class="tim">
-                <button onclick="show()" class="btn btn-primary mx-2 w-70">Signup</button>
-                <button class="btn btn-danger mx-2 my-2 w-70" onclick="google()">Signup with Google</button>
+                <button onclick="show()" class="btn btn-primary mx-2 w-70">show content</button>
+                <button class="btn btn-danger mx-2 my-2 w-70" >Signup with Google</button>
             </div>
             <div class=" w-100">
                 <div class="tim">
-                    <button class="btn btn-success mx-2 w-70">login</button>
+                    <button class="btn btn-success mx-2 w-70"> post blog</button>
                     <button class="btn btn-secondary mx-2 my-2 w-70" >Login with Google</button>
                 </div>
             </div>
@@ -91,37 +92,6 @@
         </div>
     </div>
     
-    <div id="Small" class="row hey my-5 small">
-        <div  class="container big col-sm-5 col-md-5 col-lg-5 ">
-            <form>
-                <div class="mb-3 mx-3 my-2 ">
-                    <label for="exampleInputEmail1" class="form-label">Please Input your full Name
-                    </label>
-                    <input type="text" class="form-control w-100" id="signame" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text text-white">We'll never share your details with anyone else.
-                    </div>
-                </div>
-                <div class="mb-3 mx-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control w-100" id="sigpassword">
-                </div>
-                <div class="mb-3 mx-3">
-                    <label for="name" class="form-label">Email address</label>
-                    <input type="email" class="form-control w-100" id="sigEmail" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.
-                    </div>
-                </div>
-
-
-            </form> 
-            <div class=" w-100">
-                <div class="tim">
-                <button class="btn btn-primary mx-2 w-70">Signup</button>
-                <button class="btn btn-danger mx-2 my-2 w-70">Signup with Google</button>
-            </div>
-        
-        </div>
-    </div>
 </body>
 
 </html>
@@ -136,12 +106,13 @@
       storageBucket: "blur-first-fire-base.appspot.com",
       messagingSenderId: "355060420732",
       appId: "1:355060420732:web:6b08643839adcc1db5f9f9",
-      measurementId: "G-162QXK4CTG"
+    
     };
   
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
-    var provider = new firebase.auth.GoogleAuthProvider();
+    const db = firebase.firestore();
+
   </script>
 
 
@@ -153,64 +124,27 @@
 
 
 
-function show() {  
+function show(ev) {  
 
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-  .then((userCredential) => {
-    // Signed in 
-    var user = userCredential.user;
-    alert(name.value+" "+"signed up successfully");
-    window
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
- alert(errorMessage)
-  });
+    db.collection("blog").doc().set({
+    name: name.value,
+    password: password.value,
+    email: email.value
+})
+.then(() => {
+    console.log("Document successfully written!");
+    alert("upload successful")
+})
+.catch((error) => {
+    console.error("Error writing document: ", error);
+    alert("unsuccessful")
+});
 
-    let user_data = {
-        Name: name.value,
-        email: email.value,
-        password: password.value,
-    }
-    // document.getElementById("Small").style.display = "block"
 
-    //  document.getElementById("big").style.display = "none"
 
-   
 }
 
-function google(){
 
-    
 
-    firebase.auth()
-  .signInWithPopup(provider)
-  .then((result) => {
-    /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
-
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // IdP data available in result.additionalUserInfo.profile.
-      // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log("successful")
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
-  let user_data = {
-        Name: name.value,
-        email: email.value,
-        password: password.value,
-    }
-}
 </script>
+
