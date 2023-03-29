@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">h
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src=" https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js"></script>
+    <script src=" https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src=" https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
    
     <title>Document</title>
     <style>
@@ -17,7 +18,7 @@
         }
 
         body {
-         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1005%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M824.986%2c608.618C853.444%2c608.696%2c881.744%2c596.013%2c895.153%2c570.912C907.951%2c546.956%2c900.642%2c518.002%2c885.406%2c495.518C872.047%2c475.804%2c848.787%2c466.578%2c824.986%2c467.369C802.631%2c468.112%2c783.641%2c480.765%2c771.144%2c499.315C756.589%2c520.919%2c743.976%2c547.159%2c755.487%2c570.527C767.999%2c595.927%2c796.672%2c608.54%2c824.986%2c608.618' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M349.8816499669671 163.82800947292372L400.5784306712066 7.799362111701896 244.54978330998478-42.89741859253763 193.85300260574525 113.13122876868421z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M221.95478670900502 476.8897058553833L321.59767490494477 476.8897058553833 271.77623080697487 327.42537356147363z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M282.7179898360926 116.54732477762082L398.94731005254744 141.25262944807434 423.65261472300097 25.02330923161952 307.42329450654614 0.31800456116597786z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M792.4867694666048 157.0719018961562L825.5213659260965 265.12319822625153 900.5380657967 124.03730543666455z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M108.34%2c360.579C157.029%2c361.351%2c201.994%2c335.506%2c227.173%2c293.826C253.27%2c250.627%2c257.345%2c197.418%2c233.91%2c152.719C208.704%2c104.641%2c162.614%2c68.275%2c108.34%2c67.163C52.306%2c66.014%2c-1.234%2c97.342%2c-26.475%2c147.382C-49.727%2c193.48%2c-31.738%2c246.523%2c-4.144%2c290.16C21.196%2c330.232%2c60.934%2c359.828%2c108.34%2c360.579' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1161.2921396710767 149.51871324521747L1146.8829920844187 286.6125948593642 1298.3860212852235 163.92786083187553z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1005'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+        background-color: red;
         width: 100%;
         display: flex;
             justify-content: center;
@@ -66,7 +67,7 @@
                 </div>
                 <div class="mb-3 mx-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="file" class="form-control w-100" id="password">
+                    <input type="text" class="form-control w-100" id="password">
                 </div>
                 <div class="mb-3 mx-3">
                     <label for="name" class="form-label">blog text</label>
@@ -88,10 +89,11 @@
                     <button class="btn btn-secondary mx-2 my-2 w-70" >Login with Google</button>
                 </div>
             </div>
-           
         </div>
     </div>
-    
+    <div>
+        <h1 class="text-white "> latest blog</h1>
+    </div>
 </body>
 
 </html>
@@ -125,7 +127,10 @@
 
 
 function show(ev) {  
-
+    let email = document.getElementById("Email");
+    let password = document.getElementById("password");
+    let name = document.getElementById("Fullname");
+    
     db.collection("blog").doc().set({
     name: name.value,
     password: password.value,
@@ -142,6 +147,15 @@ function show(ev) {
 
 
 
+}
+
+function showblog(params) {
+    db.collection("cities").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    });
+});
 }
 
 
